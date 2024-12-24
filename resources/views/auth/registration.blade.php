@@ -12,18 +12,22 @@
 
 <body>
     <div class="container">
+        <span style="color: red;">{{ $errors->first('email') }} <br> </span>
+        <span style="color: red;">{{ $errors->first('password') }} <br> </span>
+        <span style="color: red;">{{ $errors->first('confirm_password') }} <br> </span> @include('_message')
         <div class="wrapper">
             <div class="title">
                 <h6>Registration</h6>
             </div>
-            <form action="">
+            <form action="{{ url('registration') }}" method="POST">
+                {{ csrf_field() }}
                 <div class="row">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="name" value="" id="" placeholder="Enter Your Name" required>
+                    <input type="text" name="name" value="{{ old('name') }}" id="" placeholder="Enter Your Name" required>
                 </div>
                 <div class="row">
                     <i class="fas fa-envelope"></i>
-                    <input type="email" name="email" value="" id="" placeholder="Enter Your Email" required>
+                    <input type="email" name="email" value="{{ old('email') }}" id="" placeholder="Enter Your Email" required>
                 </div>
                 <div class="row">
                     <i class="fas fa-lock"></i>
@@ -42,14 +46,14 @@
                     </select>
                 </div>
                 <div class="password">
-                    <a href="">Forgot Password</a>
+                    <a href="{{ url('forgotPassword') }}">Forgot Password</a>
                 </div>
                 <div class="row button">
                     <input type="submit" value="Registration">
                 </div>
                 <div class="signin-link">
                     Login?
-                    <a href="">Login</a>
+                    <a href="{{ url('login') }}">Login</a>
                 </div>
                 <div class="home-link">
                     Home
