@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -35,6 +36,29 @@ class AuthController extends Controller
     
     public function Login() {
         return view('auth.login');
+    }
+    
+    public function LoginStore(Request $request) {
+        // dd($request->all());
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
+            if (Auth::user()->is_role == '2') {
+                echo 'Super Admin';
+                die();
+                // return redirect()->intended('superadmin/dashboard');
+            } elseif (Auth::user()->is_role == '1') {
+                echo 'Admin';
+                die();
+                // return redirect()->intended('admin/dashboard');
+            } elseif (Auth::user()->is_role == '0') {
+                echo 'User';
+                die();
+                // return redirect()->intended('user/dashboard');
+            } else {
+                return redirect('login')->with('error', 'No Available Email....');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Login Failed....');
+        }
     }
     
     public function ForgotPassword() {

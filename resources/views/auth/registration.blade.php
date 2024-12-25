@@ -40,9 +40,9 @@
                 <div class="row">
                     <select class="selectbox" name="is_role" id="" required>
                         <option value="">Select Role</option>
-                        <option value="2">Super Admin</option>
-                        <option value="1">Admin</option>
-                        <option value="0">User</option>
+                        <option {{ old('is_role' == '2' ? 'selected' : '') }} value="2">Super Admin</option>
+                        <option {{ old('is_role' == '1' ? 'selected' : '') }} value="1">Admin</option>
+                        <option {{ old('is_role' == '0' ? 'selected' : '') }} value="0">User</option>
                     </select>
                 </div>
                 <div class="password">
