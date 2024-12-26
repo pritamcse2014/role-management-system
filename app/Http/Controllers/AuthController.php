@@ -42,17 +42,17 @@ class AuthController extends Controller
         // dd($request->all());
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
             if (Auth::user()->is_role == '2') {
-                echo 'Super Admin';
-                die();
-                // return redirect()->intended('superadmin/dashboard');
+                // echo 'Super Admin';
+                // die();
+                return redirect()->intended('superadmin/dashboard');
             } elseif (Auth::user()->is_role == '1') {
-                echo 'Admin';
-                die();
-                // return redirect()->intended('admin/dashboard');
+                // echo 'Admin';
+                // die();
+                return redirect()->intended('admin/dashboard');
             } elseif (Auth::user()->is_role == '0') {
-                echo 'User';
-                die();
-                // return redirect()->intended('user/dashboard');
+                // echo 'User';
+                // die();
+                return redirect()->intended('user/dashboard');
             } else {
                 return redirect('login')->with('error', 'No Available Email....');
             }
@@ -63,5 +63,10 @@ class AuthController extends Controller
     
     public function ForgotPassword() {
         return view('auth.forgotPassword');
+    }
+
+    public function Logout() {
+        Auth::logout();
+        return redirect(url('/'));
     }
 }

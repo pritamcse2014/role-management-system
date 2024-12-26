@@ -143,6 +143,21 @@ form .signin-link a:hover {
     text-decoration: underline;
 }
 
+.wrapper form .logout-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 17px;
+}
+
+.wrapper form .logout-link a {
+    color: #16a085;
+    text-decoration: none;
+}
+
+form .logout-link a:hover {
+    text-decoration: underline;
+}
+
 .wrapper form .home-link {
     text-align: center;
     margin-top: 20px;
