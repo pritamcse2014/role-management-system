@@ -14,7 +14,8 @@ use Illuminate\Support\Str;
 class AuthController extends Controller
 {
     public function Registration() {
-        return view('auth.registration');
+        $data['metaTitle'] = 'Registration';
+        return view('auth.registration', $data);
     }
 
     public function RegistrationStore(Request $request) {
@@ -38,7 +39,8 @@ class AuthController extends Controller
     }
     
     public function Login() {
-        return view('auth.login');
+        $data['metaTitle'] = 'Login';
+        return view('auth.login', $data);
     }
     
     public function LoginStore(Request $request) {
@@ -65,7 +67,8 @@ class AuthController extends Controller
     }
     
     public function ForgotPassword() {
-        return view('auth.forgotPassword');
+        $data['metaTitle'] = 'Forgot Password';
+        return view('auth.forgotPassword', $data);
     }
 
     public function ForgotPasswordStore(Request $request) {
@@ -92,6 +95,7 @@ class AuthController extends Controller
         }
         $user = $user->first();
         $data['token'] = $token;
+        $data['metaTitle'] = 'Reset Password';
         return view('auth.resetPassword', $data);
     }
 
